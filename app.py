@@ -1,60 +1,62 @@
 import streamlit as st
 import joblib
 
-st.set_page_config(page_title="Fake News Detector", page_icon="📰", layout="wide")
+st.set_page_config(page_title="Fake News Detector", page_icon="📰", layout="centered")
 
 model = joblib.load("model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
 
-# --- Bigger Box + Visible Newspaper Background ---
 st.markdown("""
 <style>
+header {visibility: hidden;}
 .stApp {
-    background: linear-gradient(rgba(247,245,240,0.82), rgba(247,245,240,0.82)),
-    url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1800&auto=format&fit=crop");
+    background-image: url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
 }
 .block-container {
-    max-width: 900px !important;
-    padding-top: 40px !important;
+    background: rgba(255,255,255,0.96);
+    padding: 35px 35px 25px 35px !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 40px;
 }
-.main-card {
-    background: white;
-    padding: 40px 48px !important;
-    border-radius: 18px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    border: 1px solid #E8E5DF;
+h1 { color: #0a2540 !important; text-align: center; }
+p { color: #333 !important; }
+.stTextArea textarea {
+    background-color: white !important;
+    color: black !important;
+    border: 1.5px solid #ddd !important;
+    font-size: 16px !important;
 }
-h1 { font-size: 34px !important; color: #1A2B4A !important; margin-bottom: 0px !important; }
-.subtitle { color: #6B7280; font-size: 15px; margin-top: 6px; margin-bottom: 22px; }
-.stTextArea textarea { font-size: 15px !important; }
-.stButton > button {
-    border-radius: 10px !important;
-    border: 1px solid #D1D5DB !important;
+.stButton button {
     background: white !important;
-    color: #1A2B4A !important;
-    padding: 8px 16px !important;
+    color: #0a2540 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    width: 100%;
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-card">', unsafe_allow_html=True)
-st.markdown("<h1>📰 Fake News Detector</h1>", unsafe_allow_html=True)
-st.markdown('<p class="subtitle">AI-powered verification for news articles</p>', unsafe_allow_html=True)
+st.markdown("<h1>📰 Fake News Detector</h1>")
+st.markdown("<p style='text-align:center;'>AI-powered verification for news articles</p>")
 
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("Try Real Example", use_container_width=True):
-        st.session_state.news_text = "India celebrated its 77th Republic Day on 26 January 2026 in New Delhi with a grand parade at Kartavya Path. The event showcased India's military strength, cultural diversity and technological achievements."
+    if st.button("Try Real Example"):
+        st.session_state.news_text = "The Prime Minister of India addressed the nation from the Red Fort in New Delhi on Independence Day. He spoke about the country's economic growth, development plans, and the achievements of Indian scientists, farmers and soldiers."
 with col2:
-    if st.button("Try Fake Example", use_container_width=True):
-        st.session_state.news_text = "SHOCKING! Government will give 1 lakh rupees to every student if you forward this message to 10 people, offer ends tonight!"
+    if st.button("Try Fake Example"):
+        st.session_state.news_text = "BREAKING: Government announces that all mobile phones will stop working from tomorrow and everyone will get free gold coins. Share this message with 10 people otherwise your phone will be blocked."
 
-news = st.text_area("Paste news here...", key="news_text", height=200, label_visibility="collapsed")
+if "news_text" not in st.session_state:
+    st.session_state.news_text = ""
 
-if st.button("Check Now", use_container_width=True, type="primary"):
+news = st.text_area("Paste news here...", value=st.session_state.news_text, height=180)
+
+if st.button("Check Now"):
     if news.strip() == "":
         st.warning("Please paste some news first!")
     else:
@@ -67,5 +69,4 @@ if st.button("Check Now", use_container_width=True, type="primary"):
         else:
             st.success(f"✅ Real News - {conf}% confidence")
 
-st.markdown('</div>', unsafe_allow_html=True)
-st.markdown("<p style='text-align:center; color:#6B7280; font-size:12px; margin-top:14px;'>Made by Kavya | AI Project</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; font-size:13px; margin-top:20px;'>Made by Kavya | AI Project</p>")
