@@ -8,10 +8,12 @@ vectorizer = joblib.load("vectorizer.pkl")
 
 css = "<style>"
 css += "header {visibility: hidden;}"
-css += ".stApp { background-image: url(https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2000); background-size: cover; background-position: center; background-attachment: fixed; }"
+css += ".stApp { background-image: url(https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1800&auto=format&fit=crop); background-size: cover; background-position: center; background-attachment: fixed; }"
 css += ".block-container { background: white; padding: 35px 45px 30px 45px !important; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.18); margin-top: 30px; max-width: 780px !important; }"
-css += ".stTextArea textarea { background-color: white !important; color: #222 !important; border: 1px solid #e0e0e0 !important; border-radius: 8px !important; font-size: 17px !important; line-height: 1.6 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important; }"
+css += ".stTextArea textarea { background-color: white !important; color: #222 !important; border: 1px solid #e0e0e0 !important; border-radius: 8px !important; font-size: 17px !important; line-height: 1.6 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.06) !important; }"
 css += ".stTextArea label p { font-size: 19px !important; color: #333 !important; }"
+css += "button[kind='primary'] { background-color: #0a1931 !important; color: white !important; border: none !important; border-radius: 8px !important; font-size: 19px !important; font-weight: 700 !important; padding: 12px !important; }"
+css += "button[kind='primary']:hover { background-color: #0a1931 !important; color: white !important; }"
 css += "</style>"
 st.markdown(css, unsafe_allow_html=True)
 
