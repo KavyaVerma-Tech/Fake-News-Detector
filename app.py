@@ -23,10 +23,10 @@ st.markdown("<p style='color:#444; font-size:22px; margin-left:58px; margin-top:
 col1, col2 = st.columns([1,1])
 with col1:
     if st.button("Try Real Example"):
-        st.session_state.news_text = "Local authorities confirmed the city council voted unanimously yesterday to approve the new parks and recreation funding bill. The proposal includes upgrades to playgrounds, walking trails, and community garden space. Residents are invited to attend the public meeting next Thursday at 6pm at City Hall to share feedback."
+        st.session_state.news_text = "WASHINGTON (Reuters) - The United States said on Tuesday that it will continue to work with its allies to address security challenges in the region, according to White House officials. The announcement was made during a press briefing in Washington."
 with col2:
     if st.button("Try Fake Example"):
-        st.session_state.news_text = "BREAKING: Government announces that all mobile phones will stop working from tomorrow and everyone will get free gold coins. Share this message with 10 people otherwise your phone will be blocked."
+        st.session_state.news_text = "Pope Francis Shocks World, Endorses Donald Trump for President, Releases Statement. BREAKING: The Pope just endorsed Trump and said Hillary Clinton is going to jail. Share this before they delete it!"
 
 if "news_text" not in st.session_state:
     st.session_state.news_text = ""
