@@ -41,7 +41,7 @@ if st.button("Check Now", type="primary", use_container_width=True):
         pred = model.predict(vec)[0]
         prob = model.predict_proba(vec)[0]
         conf = round(max(prob) * 100, 1)
-        if pred == 1 or str(pred).lower() == "fake":
+        if pred == 0 or str(pred).lower() == "fake":
             st.markdown("<div style='background:#f8d7da; padding:15px 20px; border-radius:8px;'><b style='font-size:19px;'>❌ Fake News - " + str(conf) + "% confidence</b><br><span style='color:#333;'>This content shows signs of misinformation. Please verify from reliable sources.</span></div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background:#d9ead3; padding:15px 20px; border-radius:8px;'><b style='font-size:19px;'>✅ Real News - " + str(conf) + "% confidence</b><br><span style='color:#333;'>This content appears to be factual and consistent with reliable sources. No misleading language detected.</span></div>", unsafe_allow_html=True)
